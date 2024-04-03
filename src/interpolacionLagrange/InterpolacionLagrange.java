@@ -65,8 +65,8 @@ public class InterpolacionLagrange extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Interpolación de Lagrange");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel.setBounds(424, 29, 273, 24);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblNewLabel.setBounds(396, 35, 313, 35);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Valores de X:");
@@ -100,65 +100,73 @@ public class InterpolacionLagrange extends JFrame {
 		aceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				Conversion c = new Conversion();
-				Operaciones op = new Operaciones();
-				Respuestas r = new Respuestas();
-				
-				String x = valoresx.getText();
-				String y = valoresy.getText();
-				String valorE = vevaluar.getText();
-				
-				c.setValoresx(x);
-				c.setValoresy(y);
-				
-				op.setPts(c.conversion());
-				op.setvE(valorE);
-				
-				System.out.println(c.conversion());
-				
-				String regex = "^[0-9,-.]*[0-9]$";
-				Pattern pattern = Pattern.compile(regex);
-				Matcher matcherx = pattern.matcher(x);
-				Matcher matchery = pattern.matcher(y);
-				Matcher matchervE = pattern.matcher(valorE);
-				
-				
-				if(x.length() == y.length()) {
-					if(!valoresx.getText().isEmpty() && !valoresy.getText().isEmpty() && !vevaluar.getText().isEmpty()) {
-						if(matcherx.matches() && matchery.matches()) {
-							if(matchervE.matches()) {
-								aceptar.setEnabled(true);
-								r.setVisible(true);
-								r.setTitle("Interpolación de Lagrange");
-								r.setResizable(false);
-								r.setSize(730,430);
-								r.setLocationRelativeTo(null);
-								r.resultadosOb(c.conversion(), op.operacion());
-								ImageIcon icono = new ImageIcon("Imagenes/logo.png");
-								r.setIconImage(icono.getImage());
-								
-								dispose();
+				try {
+					Conversion c = new Conversion();
+					Operaciones op = new Operaciones();
+					
+					
+					String x = valoresx.getText();
+					String y = valoresy.getText();
+					String valorE = vevaluar.getText();
+					
+					c.setValoresx(x);
+					c.setValoresy(y);
+					
+					op.setPts(c.conversion());
+					op.setvE(valorE);
+					
+					
+					String regex = "^[0-9,-.]*[0-9]$";
+					Pattern pattern = Pattern.compile(regex);
+					Matcher matcherx = pattern.matcher(x);
+					Matcher matchery = pattern.matcher(y);
+					String regex2 = "^[0-9-.]*[0-9]$";
+					Pattern pattern2 = Pattern.compile(regex2);
+					Matcher matchervE = pattern2.matcher(valorE);
+
+					try {
+						if(c.lenghtX()==c.lenghtY()) {
+							aceptar.setEnabled(true);
+							if(!valoresx.getText().isEmpty() && !valoresy.getText().isEmpty() && !vevaluar.getText().isEmpty()) {
+								if(matcherx.matches() && matchery.matches() && matchervE.matches()) {
+									aceptar.setEnabled(true);
+									Respuestas r = new Respuestas(c.conversion(), op.operacion(),valorE);
+									r.setVisible(true);
+									r.setTitle("Interpolación de Lagrange");
+									r.setResizable(false);
+									r.setSize(730,430);
+									r.setLocationRelativeTo(null);
+									ImageIcon icono = new ImageIcon("Imagenes/logo.png");
+									r.setIconImage(icono.getImage());
+									dispose();	
+								}else{
+									alerta.setText("");
+									alerta.setText("Solo números (enteros, decimales, positivos/negativos), comas");
+									aceptar.setEnabled(false);	
+								}
 							}else {
-								alerta.setText("El valor a evaluar debe ser un número");
+								alerta.setText("");
+								alerta.setText("Complete todos los campos para continuar.");
 								aceptar.setEnabled(false);
 							}
+							
 						}else {
-							alerta.setText("Respete el formato n1, n2, n3,...");
+							alerta.setText("");
+							alerta.setText("La cantidad de números en X y Y deben ser iguales");
 							aceptar.setEnabled(false);
 						}
 						
-		
-					}else {
-						alerta.setText("Complete todos los campos para continuar.");
+					
+					}catch(Exception e2) {
+						alerta.setText("Hubo un error, verifique los datos ingresados");
 						aceptar.setEnabled(false);
 					}
+												
+				}catch(Exception e1) {
+					alerta.setText("Valores no permitidos, intentelo de nuevo");
+					aceptar.setEnabled(false);
 				}
-				
-				alerta.setText("La cantidad de números en X y Y deben ser iguales");
-				aceptar.setEnabled(false);
-				
-				
+					
 				
 			}
 		});

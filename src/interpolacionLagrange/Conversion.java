@@ -34,26 +34,22 @@ public class Conversion {
 		String vX = this.valoresx;
 		String vY = this.valoresy;
 		
-		char[] caracteresx = vX.toCharArray();
-		char[] caracteresy = vY.toCharArray();
+		
+		String[] elementosx = vX.split(",(?=\\d)");
+        String[] elementosy = vY.split(",(?=\\d)");
+		
 		
 		ArrayList<Double> vx = new ArrayList<Double>();
 		ArrayList<Double> vy = new ArrayList<Double>();
 		ArrayList<Double> pts = new ArrayList<Double>();
 		
-		while(i < caracteresx.length) {
-			if(caracteresx[i] != ',') {
-				String v = String.valueOf(caracteresx[i]);
-				vx.add(Double.parseDouble(v));
-			}
+		while(i < elementosx.length) {
+			vx.add(Double.parseDouble(elementosx[i]));
 			i++;
 		}
 		
-		while(j < caracteresy.length) {
-			if(caracteresy[j] != ',') {
-				String v = String.valueOf(caracteresy[j]);
-				vy.add(Double.parseDouble(v));
-			}
+		while(j < elementosy.length) {
+			vy.add(Double.parseDouble(elementosy[j]));
 			j++;
 		}
 		
@@ -61,6 +57,24 @@ public class Conversion {
 		pts.addAll(vy);
 		
 		return pts;
+	}
+	
+	
+	public int lenghtX() {
+
+		String vX = this.valoresx;
+		String[] elementosx = vX.split(",(?=\\d)");
+	
+		return elementosx.length;
+	}
+	
+	
+	public int lenghtY() {
+
+		String vY = this.valoresy;
+		String[] elementosy = vY.split(",(?=\\d)");
+	
+		return elementosy.length;
 	}
 	
 	
