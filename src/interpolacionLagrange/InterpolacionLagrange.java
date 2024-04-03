@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -36,7 +38,7 @@ public class InterpolacionLagrange extends JFrame {
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
 					
-					ImageIcon icono = new ImageIcon("Imagenes/logo.png");
+					ImageIcon icono = new ImageIcon("Imagenes/ico.png");
 					frame.setIconImage(icono.getImage());
 					
 				} catch (Exception e) {
@@ -136,7 +138,7 @@ public class InterpolacionLagrange extends JFrame {
 									r.setResizable(false);
 									r.setSize(730,430);
 									r.setLocationRelativeTo(null);
-									ImageIcon icono = new ImageIcon("Imagenes/logo.png");
+									ImageIcon icono = new ImageIcon("Imagenes/ico.png");
 									r.setIconImage(icono.getImage());
 									dispose();	
 								}else{
@@ -203,16 +205,18 @@ public class InterpolacionLagrange extends JFrame {
 		vevaluar.setBounds(565, 223, 110, 24);
 		contentPane.add(vevaluar);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Admin\\Desktop\\6TO SEMESTRE\\Análisis Numérico\\3 Proyecto\\Interpolacion-Lagrange\\Imagenes\\img1.png"));
-		lblNewLabel_2.setBounds(49, 302, 305, 58);
-		contentPane.add(lblNewLabel_2);
+		JLabel Teorema = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/Teorema.png")).getImage();
+		Teorema.setIcon(new ImageIcon(img));
+		Teorema.setBounds(49, 302, 305, 58);
+		contentPane.add(Teorema);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Admin\\Desktop\\6TO SEMESTRE\\Análisis Numérico\\3 Proyecto\\Interpolacion-Lagrange\\Imagenes\\4.jpg"));
-		lblNewLabel_3.setBounds(49, 29, 289, 270);
-		contentPane.add(lblNewLabel_3);
+		JLabel Lagrange = new JLabel("");
+		Image img2 = new ImageIcon(this.getClass().getResource("/Lagrange.jpg")).getImage();
+		Lagrange.setIcon(new ImageIcon(img2));
+		Lagrange.setHorizontalAlignment(SwingConstants.CENTER);
+		Lagrange.setBounds(49, 29, 289, 270);
+		contentPane.add(Lagrange);
 		
 		
 	}

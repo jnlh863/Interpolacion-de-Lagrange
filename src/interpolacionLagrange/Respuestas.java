@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -115,11 +117,12 @@ public class Respuestas extends JFrame {
         lblNewLabel_2.setBounds(421, 210, 194, 28);
         contentPane.add(lblNewLabel_2);
         
-        JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Admin\\Desktop\\6TO SEMESTRE\\Análisis Numérico\\3 Proyecto\\Interpolacion-Lagrange\\Imagenes\\duke (1).png"));
-        lblNewLabel_3.setBounds(469, 28, 131, 110);
-        contentPane.add(lblNewLabel_3);
+        JLabel Duke = new JLabel("");
+        Image img = new ImageIcon(this.getClass().getResource("/Duke.png")).getImage();
+		Duke.setIcon(new ImageIcon(img));
+        Duke.setHorizontalAlignment(SwingConstants.CENTER);
+        Duke.setBounds(469, 28, 131, 110);
+        contentPane.add(Duke);
         
         JButton regresar = new JButton("Ingresar nuevos valores");
         
@@ -132,7 +135,7 @@ public class Respuestas extends JFrame {
 				frame.setSize(800,430);
 				frame.setLocationRelativeTo(null);
 				frame.setResizable(false);
-				ImageIcon icono = new ImageIcon("Imagenes/logo.png");
+				ImageIcon icono = new ImageIcon("Imagenes/ico.png");
 				frame.setIconImage(icono.getImage());
 				dispose();	
         	}
